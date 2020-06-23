@@ -28,13 +28,14 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
+
   app.get("/filteredimage", async (req, res) => {
     const imageUrl = req.query.image_url;
 
     // check imageUrl is valid
     if (!imageUrl) {
       return res.status(400).send({
-        message: "the imageURL is wrong!!"
+        message: "wrong image URL"
       });
     }
 
@@ -45,10 +46,9 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
         deleteLocalFiles([filteredImageFromURL])
       );
     } catch (error) {
-      res.sendStatus(422).send("Image not found");
+      res.sendStatus(422).send("wrong image ");
     }
   });
-  //! END @TODO1
   
   // Root Endpoint
   // Displays a simple message to the user
