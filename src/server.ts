@@ -29,7 +29,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
-  app.get("/filteredimage", async (req, res) => {
+  app.get("/filteredimage", async (req:express.Request, res:express.Response) => {
     const imageUrl = req.query.image_url;
 
     // check imageUrl is valid
@@ -46,13 +46,13 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
         deleteLocalFiles([filteredImageFromURL])
       );
     } catch (error) {
-      res.sendStatus(422).send("wrong image ");
+      res.sendStatus(422).send("wrong image");
     }
   });
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async (req:express.Request, res:express.Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
